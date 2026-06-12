@@ -149,8 +149,8 @@ class MCPHA(QMainWindow, Ui_MCPHA):
     def read_data(self, data):
         view = data.view(np.uint8)
         size = view.size
-        while self.socket.state() == QAbstractSocket.ConnectedState and self.socket.bytesAvailable() < size:
-            self.loop.exec_()
+        while self.socket.state() == QAbstractSocket.SocketState.ConnectedState and self.socket.bytesAvailable() < size:
+            self.loop.exec()
         if self.socket.bytesAvailable() < size:
             return False
         else:
